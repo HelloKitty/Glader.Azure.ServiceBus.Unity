@@ -1,6 +1,8 @@
 ﻿// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
+using Glader.Azure.ServiceBus.Unity.Stubs;
+
 namespace Microsoft.Azure.ServiceBus
 {
     using System;
@@ -25,7 +27,6 @@ namespace Microsoft.Azure.ServiceBus
         public const string MessageIdTag = "MessageId";
         public const string SessionIdTag = "SessionId";
 
-        private static readonly DiagnosticListener DiagnosticListener = new DiagnosticListener(DiagnosticListenerName);
         private readonly string entityPath;
         private readonly Uri endpoint;
 
@@ -37,7 +38,7 @@ namespace Microsoft.Azure.ServiceBus
 
         public static bool IsEnabled()
         {
-            return DiagnosticListener.IsEnabled();
+            return false;
         }
 
 
@@ -61,16 +62,7 @@ namespace Microsoft.Azure.ServiceBus
 
         internal void SendStop(Activity activity, IList<Message> messageList, TaskStatus? status)
         {
-            if (activity != null)
-            {
-                DiagnosticListener.StopActivity(activity, new
-                {
-                    Messages = messageList,
-                    Entity = this.entityPath,
-                    Endpoint = this.endpoint,
-                    Status = status ?? TaskStatus.Faulted
-                });
-            }
+           
         }
 
         #endregion
@@ -93,13 +85,7 @@ namespace Microsoft.Azure.ServiceBus
         {
             if (activity != null)
             {
-                DiagnosticListener.StopActivity(activity, new
-                {
-                    Message = message,
-                    Entity = this.entityPath,
-                    Endpoint = this.endpoint,
-                    Status = status ?? TaskStatus.Faulted
-                });
+               
             }
         }
 
@@ -124,14 +110,7 @@ namespace Microsoft.Azure.ServiceBus
         {
             if (activity != null)
             {
-                DiagnosticListener.StopActivity(activity, new
-                {
-                    Session = session,
-                    Message = message,
-                    Entity = this.entityPath,
-                    Endpoint = this.endpoint,
-                    Status = status ?? TaskStatus.Faulted
-                });
+                
             }
         }
 
@@ -160,15 +139,7 @@ namespace Microsoft.Azure.ServiceBus
         {
             if (activity != null)
             {
-                DiagnosticListener.StopActivity(activity, new
-                {
-                    Message = message,
-                    ScheduleEnqueueTimeUtc = scheduleEnqueueTimeUtc,
-                    Entity = this.entityPath,
-                    Endpoint = this.endpoint,
-                    SequenceNumber = sequenceNumber,
-                    Status = status ?? TaskStatus.Faulted
-                });
+                
             }
         }
 
@@ -192,13 +163,7 @@ namespace Microsoft.Azure.ServiceBus
         {
             if (activity != null)
             {
-                DiagnosticListener.StopActivity(activity, new
-                {
-                    SequenceNumber = sequenceNumber,
-                    Entity = this.entityPath,
-                    Endpoint = this.endpoint,
-                    Status = status ?? TaskStatus.Faulted
-                });
+                
             }
         }
 
@@ -222,16 +187,7 @@ namespace Microsoft.Azure.ServiceBus
         {
             if (activity != null)
             {
-                SetRelatedOperations(activity, messageList);
-                SetTags(activity, messageList);
-                DiagnosticListener.StopActivity(activity, new
-                {
-                    RequestedMessageCount = messageCount,
-                    Entity = this.entityPath,
-                    Endpoint = this.endpoint,
-                    Status = status ?? TaskStatus.Faulted,
-                    Messages = messageList
-                });
+                
             }
         }
 
@@ -256,18 +212,7 @@ namespace Microsoft.Azure.ServiceBus
         {
             if (activity != null)
             {
-                SetRelatedOperations(activity, messageList);
-                SetTags(activity, messageList);
-
-                DiagnosticListener.StopActivity(activity, new
-                {
-                    FromSequenceNumber = fromSequenceNumber,
-                    RequestedMessageCount = messageCount,
-                    Entity = this.entityPath,
-                    Endpoint = this.endpoint,
-                    Status = status ?? TaskStatus.Faulted,
-                    Messages = messageList
-                });
+                
             }
         }
 
@@ -291,17 +236,7 @@ namespace Microsoft.Azure.ServiceBus
         {
             if (activity != null)
             {
-                SetRelatedOperations(activity, messageList);
-                SetTags(activity, messageList);
-
-                DiagnosticListener.StopActivity(activity, new
-                {
-                    SequenceNumbers = sequenceNumbers,
-                    Entity = this.entityPath,
-                    Endpoint = this.endpoint,
-                    Messages = messageList,
-                    Status = status ?? TaskStatus.Faulted
-                });
+                
             }
         }
 
@@ -325,13 +260,7 @@ namespace Microsoft.Azure.ServiceBus
         {
             if (activity != null)
             {
-                DiagnosticListener.StopActivity(activity, new
-                {
-                    LockTokens = lockTokens,
-                    Entity = this.entityPath,
-                    Endpoint = this.endpoint,
-                    Status = status ?? TaskStatus.Faulted
-                });
+                
             }
         }
 
@@ -355,13 +284,7 @@ namespace Microsoft.Azure.ServiceBus
         {
             if (activity != null)
             {
-                DiagnosticListener.StopActivity(activity, new
-                {
-                    LockToken = lockToken,
-                    Entity = this.entityPath,
-                    Endpoint = this.endpoint,
-                    Status = status ?? TaskStatus.Faulted
-                });
+                
             }
         }
 
@@ -385,14 +308,7 @@ namespace Microsoft.Azure.ServiceBus
         {
             if (activity != null)
             {
-                DiagnosticListener.StopActivity(activity, new
-                {
-                    LockToken = lockToken,
-                    Entity = this.entityPath,
-                    Endpoint = this.endpoint,
-                    Status = status ?? TaskStatus.Faulted,
-                    LockedUntilUtc = lockedUntilUtc
-                });
+                
             }
         }
 
@@ -416,13 +332,7 @@ namespace Microsoft.Azure.ServiceBus
         {
             if (activity != null)
             {
-                DiagnosticListener.StopActivity(activity, new
-                {
-                    Rule = description,
-                    Entity = this.entityPath,
-                    Endpoint = this.endpoint,
-                    Status = status ?? TaskStatus.Faulted
-                });
+
             }
         }
 
@@ -446,13 +356,7 @@ namespace Microsoft.Azure.ServiceBus
         {
             if (activity != null)
             {
-                DiagnosticListener.StopActivity(activity, new
-                {
-                    RuleName = ruleName,
-                    Entity = this.entityPath,
-                    Endpoint = this.endpoint,
-                    Status = status ?? TaskStatus.Faulted
-                });
+                
             }
         }
 
@@ -475,13 +379,7 @@ namespace Microsoft.Azure.ServiceBus
         {
             if (activity != null)
             {
-                DiagnosticListener.StopActivity(activity, new
-                {
-                    Rules = rules,
-                    Entity = this.entityPath,
-                    Endpoint = this.endpoint,
-                    Status = status ?? TaskStatus.Faulted
-                });
+
             }
         }
 
@@ -506,13 +404,7 @@ namespace Microsoft.Azure.ServiceBus
         {
             if (activity != null)
             {
-                DiagnosticListener.StopActivity(activity, new
-                {
-                    SessionId = sessionId,
-                    Entity = this.entityPath,
-                    Endpoint = this.endpoint,
-                    Status = status ?? TaskStatus.Faulted
-                });
+
             }
         }
 
@@ -536,14 +428,7 @@ namespace Microsoft.Azure.ServiceBus
         {
             if (activity != null)
             {
-                DiagnosticListener.StopActivity(activity, new
-                {
-                    SessionId = sessionId,
-                    Entity = this.entityPath,
-                    Endpoint = this.endpoint,
-                    Status = status ?? TaskStatus.Faulted,
-                    State = state
-                });
+  
             }
         }
 
@@ -568,14 +453,7 @@ namespace Microsoft.Azure.ServiceBus
         {
             if (activity != null)
             {
-                DiagnosticListener.StopActivity(activity, new
-                {
-                    State = state,
-                    SessionId = sessionId,
-                    Entity = this.entityPath,
-                    Endpoint = this.endpoint,
-                    Status = status ?? TaskStatus.Faulted
-                });
+  
             }
         }
 
@@ -599,13 +477,7 @@ namespace Microsoft.Azure.ServiceBus
         {
             if (activity != null)
             {
-                DiagnosticListener.StopActivity(activity, new
-                {
-                    SessionId = sessionId,
-                    Entity = this.entityPath,
-                    Endpoint = this.endpoint,
-                    Status = status ?? TaskStatus.Faulted
-                });
+
             }
         }
 
@@ -613,61 +485,26 @@ namespace Microsoft.Azure.ServiceBus
 
         internal void ReportException(Exception ex)
         {
-            if (DiagnosticListener.IsEnabled(ExceptionEventName))
-            {
-                DiagnosticListener.Write(ExceptionEventName,
-                    new
-                    {
-                        Exception = ex,
-                        Entity = this.entityPath,
-                        Endpoint = this.endpoint
-                    });
-            }
+            
         }
 
         private Activity Start(string operationName, Func<object> getPayload, Action<Activity> setTags)
         {
             Activity activity = null;
             string activityName = BaseActivityName + operationName;
-            if (DiagnosticListener.IsEnabled(activityName, this.entityPath))
-            {
-                activity = new Activity(activityName);
-                setTags?.Invoke(activity);
-
-                if (DiagnosticListener.IsEnabled(activityName + ".Start"))
-                {
-                    DiagnosticListener.StartActivity(activity, getPayload());
-                }
-                else
-                {
-                    activity.Start();
-                }
-            }
+            
 
             return activity;
         }
 
         private void Inject(IList<Message> messageList)
         {
-            var currentActivity = Activity.Current;
-            if (currentActivity != null && messageList != null)
-            {
-                var correlationContext = SerializeCorrelationContext(currentActivity.Baggage.ToList());
-
-                foreach (var message in messageList)
-                {
-                    Inject(message, currentActivity.Id, correlationContext);
-                }
-            }
+            
         }
 
         private void Inject(Message message)
         {
-            var currentActivity = Activity.Current;
-            if (currentActivity != null)
-            {
-                Inject(message, currentActivity.Id, SerializeCorrelationContext(currentActivity.Baggage.ToList()));
-            }
+            
         }
 
         private void Inject(Message message, string id, string correlationContext)
@@ -703,11 +540,6 @@ namespace Microsoft.Azure.ServiceBus
                         relatedTo.Add(id);
                     }
                 }
-
-                if (relatedTo.Count > 0)
-                {
-                    activity.AddTag(RelatedToTag, string.Join(",", relatedTo.Distinct()));
-                }
             }
         }
 
@@ -716,24 +548,7 @@ namespace Microsoft.Azure.ServiceBus
             Activity activity = null;
             string activityName = BaseActivityName + operationName;
 
-            if (message != null && DiagnosticListener.IsEnabled(activityName, entityPath))
-            {
-                var tmpActivity = message.ExtractActivity(activityName);
-                setTags?.Invoke(tmpActivity);
-                
-                if (DiagnosticListener.IsEnabled(activityName, entityPath, tmpActivity))
-                {
-                    activity = tmpActivity;
-                    if (DiagnosticListener.IsEnabled(activityName + ".Start"))
-                    {
-                        DiagnosticListener.StartActivity(activity, getPayload());
-                    }
-                    else
-                    {
-                        activity.Start();
-                    }
-                }
-            }
+            
             return activity;
         }
 
@@ -744,17 +559,7 @@ namespace Microsoft.Azure.ServiceBus
                 return;
             }
 
-            var messageIds = messageList.Where(m => m.MessageId != null).Select(m => m.MessageId).ToArray();
-            if (messageIds.Any())
-            {
-                activity.AddTag(MessageIdTag, string.Join(",", messageIds));
-            }
-
-            var sessionIds = messageList.Where(m => m.SessionId != null).Select(m => m.SessionId).Distinct().ToArray();
-            if (sessionIds.Any())
-            {
-                activity.AddTag(SessionIdTag, string.Join(",", sessionIds));
-            }
+           
         }
 
         private void SetTags(Activity activity, Message message)
@@ -764,20 +569,13 @@ namespace Microsoft.Azure.ServiceBus
                 return;
             }
 
-            if (message.MessageId != null)
-            {
-                activity.AddTag(MessageIdTag, message.MessageId);
-            }
 
             SetSessionTag(activity, message.SessionId);
         }
 
         private void SetSessionTag(Activity activity, string sessionId)
         {
-            if (sessionId != null)
-            {
-                activity.AddTag(SessionIdTag, sessionId);
-            }
+           
         }
     }
 }

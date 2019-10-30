@@ -2,6 +2,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 using ApprovalTests.Reporters;
+using ApprovalTests.Reporters.TestFrameworks;
 
 #if FullNetFx
 [assembly: UseReporter(typeof(XUnit2Reporter), typeof(AllFailingTestsClipboardReporter))]

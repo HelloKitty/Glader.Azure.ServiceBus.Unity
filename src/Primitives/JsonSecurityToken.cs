@@ -5,8 +5,6 @@ namespace Microsoft.Azure.ServiceBus.Primitives
 {
     using System;
     using System.Collections.ObjectModel;
-    using System.IdentityModel.Tokens;
-    using System.IdentityModel.Tokens.Jwt;
 
     /// <summary>
     /// Extends SecurityToken for JWT specific properties
@@ -25,8 +23,7 @@ namespace Microsoft.Azure.ServiceBus.Primitives
 
         static DateTime GetExpirationDateTimeUtcFromToken(string token)
         {
-            var jwtSecurityToken = new JwtSecurityToken(token);
-            return jwtSecurityToken.ValidTo;
+            throw new NotImplementedException($"TODO: I removed this.");
         }
     }
 }
